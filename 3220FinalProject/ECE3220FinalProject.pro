@@ -1,11 +1,11 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-11-10T22:43:27
+# Project created by QtCreator 2017-11-12T15:08:10
 #
 #-------------------------------------------------
 
-QT       += core gui
-QT += sql
+QT       += core gui sql
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = ECE3220FinalProject
@@ -26,13 +26,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    secdialog.cpp
+    loginwindow.cpp \
+    signupwindow.cpp
 
 HEADERS += \
         mainwindow.h \
     database.h \
-    secdialog.h
+    loginwindow.h \
+    signupwindow.h
 
 FORMS += \
         mainwindow.ui \
-    secdialog.ui
+    loginwindow.ui \
+    signupwindow.ui

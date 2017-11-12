@@ -1,0 +1,24 @@
+#include "loginwindow.h"
+#include "ui_loginwindow.h"
+#include "signupwindow.h"
+
+LoginWindow::LoginWindow(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::LoginWindow)
+{
+    ui->setupUi(this);
+}
+
+LoginWindow::~LoginWindow()
+{
+    delete ui;
+}
+
+void LoginWindow::on_pushButton_Signup_clicked()
+{
+
+    SignUpWindow s;
+    s.data = data;
+    s.setModal(true);
+    s.exec();
+}

@@ -9,19 +9,11 @@ class MainWindow;
 
 class MainWindow : public QMainWindow
 {
-public:
-    QString Pawprint;
-    QString Name;
-    int StudentId;
-    QString Password;
     Q_OBJECT
 
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
-private slots:
-    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
