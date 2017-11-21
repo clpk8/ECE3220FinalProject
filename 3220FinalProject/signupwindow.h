@@ -3,8 +3,10 @@
 
 #include <QDialog>
 #include"database.h"
-namespace Ui {
-class SignUpWindow;
+
+namespace Ui
+{
+    class SignUpWindow;
 }
 
 class SignUpWindow : public QDialog

@@ -27,15 +27,21 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     loginwindow.cpp \
-    signupwindow.cpp
+    signupwindow.cpp \
+    adminview.cpp \
+    additemwindow.cpp
 
 HEADERS += \
         mainwindow.h \
     database.h \
     loginwindow.h \
-    signupwindow.h
+    signupwindow.h \
+    adminview.h \
+    additemwindow.h
 
 FORMS += \
         mainwindow.ui \
     loginwindow.ui \
-    signupwindow.ui
+    signupwindow.ui \
+    adminview.ui \
+    additemwindow.ui
