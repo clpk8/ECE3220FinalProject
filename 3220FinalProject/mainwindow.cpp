@@ -71,7 +71,7 @@ void MainWindow::on_pushButton_Return_clicked()
 
     cout << "Frame size : " << dWidth << " x " << dHeight << endl;
 
-    namedWindow("MyVideo",CV_WINDOW_AUTOSIZE); //create a window called "MyVideo"
+    namedWindow("ScanWindow",CV_WINDOW_AUTOSIZE); //create a window called "MyVideo"
 
     int flag = 0;
     do{
@@ -117,7 +117,7 @@ void MainWindow::on_pushButton_Return_clicked()
             //cout<<"Angle: "<<r.angle<<endl;
         }
 
-        imshow("MyVideo", frame); //show the frame in "MyVideo" window
+        imshow("ScanWindow", frame); //show the frame in "MyVideo" window
 
         if (waitKey(1) == 27) //wait for 'esc' key press for 30ms. If 'esc' key is pressed, break loop
         {
@@ -130,9 +130,27 @@ void MainWindow::on_pushButton_Return_clicked()
     //Need to add error handling
     int ItemId = stoi(id);
    // <<"correct ID is" << ItemId;
+    //returning item
     QSqlQuery query;
     query.prepare("UPDATE Item set Status = 1, Pawprint = NULL where ItemId = :ItemId");
     query.bindValue(":ItemId",ItemId);
     query.exec();
+    cvDestroyWindow("ScanWindow");
+
+
+    //load again
+    QSqlQueryModel * modal = new QSqlQueryModel();
+    QSqlQueryModel * modal1 = new QSqlQueryModel();
+    QSqlQuery query1;
+    query1.prepare("SELECT ItemId, ItemName, Location from Item Where Status = 1");
+    query1.exec();
+    modal->setQuery(query1);
+    ui->AvaliableItem->setModel(modal);
+    QSqlQuery query2;
+    query2.prepare("SELECT ItemId, ItemName, Location from Item Where Status = 0 and Pawprint = :Pawprint");
+    query2.bindValue(":Pawprint",Pawprint);
+    query2.exec();
+    modal1->setQuery(query2);
+    ui->BorrowedItem->setModel(modal1);
 
 }
