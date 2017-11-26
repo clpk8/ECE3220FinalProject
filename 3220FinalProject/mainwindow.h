@@ -3,6 +3,15 @@
 
 #include <QMainWindow>
 #include "database.h"
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <zbar.h>
+#include <iostream>
+
+using namespace cv;
+using namespace std;
+using namespace zbar;
+
 namespace Ui
 {
     class MainWindow;

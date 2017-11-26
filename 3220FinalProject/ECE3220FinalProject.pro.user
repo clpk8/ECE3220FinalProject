@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.4.1, 2017-11-26T14:31:26. -->
+<!-- Written by QtCreator 4.4.1, 2017-11-26T16:59:44. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -178,7 +178,11 @@
     </valuemap>
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
-    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges">
+     <value type="QString">PATH=/Users/Ben/Qt/5.10.0/clang_64/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</value>
+     <value type="QString">PKG_CONFIG_PATH=/usr/local/Cellar/opencv/3.3.0_3/lib/pkgconfig</value>
+     <value type="QString">zbar=/usr/local/Cellar/zbar/0.10_7/lib/pkgconfig</value>
+    </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Release</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
@@ -303,8 +307,8 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">ECE3220FinalProject</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ECE3220FinalProject2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/Ben/Dropbox/3220/v9.2/3220FinalProject/ECE3220FinalProject.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/Ben/Dropbox/3220/v9.3/3220FinalProject/ECE3220FinalProject.pro</value>
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">ECE3220FinalProject.pro</value>

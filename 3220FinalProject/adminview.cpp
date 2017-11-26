@@ -25,7 +25,7 @@ void AdminView::on_pushButton_LoadTable_clicked()
 
     QSqlQueryModel * modal1 = new QSqlQueryModel();
     QSqlQuery query1;
-    query1.prepare("SELECT ItemId, ItemName, Item.Pawprint, BorrowTime, ReturnTime, BorrowLength from Item, User where Status = 0 and Item.Pawprint = User.Pawprint");
+    query1.prepare("SELECT ItemId, ItemName, Item.Pawprint, BorrowTime, ReturnTime from Item, User where Status = 0 and Item.Pawprint = User.Pawprint");
     query1.exec();
     modal1->setQuery(query1);
     ui->BorrowedItem->setModel(modal1);
