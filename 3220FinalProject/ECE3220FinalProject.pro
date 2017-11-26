@@ -11,6 +11,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = ECE3220FinalProject
 TEMPLATE = app
 
+INCLUDEPATH += /usr/local/Cellar/opencv/3.3.0_3/include/opencv
+LIBS += -L/usr/local/Cellar/opencv/3.3.0_3/lib
+LIBS += -L/usr/local/Cellar/zbar/0.10_7/lib
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -45,3 +48,12 @@ FORMS += \
     signupwindow.ui \
     adminview.ui \
     additemwindow.ui
+
+LIBS += -L/usr/local/Cellar/opencv/3.3.0_3/lib
+
+
+
+QT_CONFIG -= no-pkg-config
+CONFIG += link_pkgconfig
+PKGCONFIG += opencv
+PKGCONFIG += zbar
