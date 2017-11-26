@@ -129,7 +129,7 @@ void DBManager::InsertItem(const int ItemId, const QString &ItemName, const QStr
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    DBManager d1("//Users//yq.wang//Dropbox//3220//FP.db");
+    DBManager d1("//Users//Ben//Dropbox//3220//FP.db");
 
     LoginWindow lw;
     lw.data = &d1;

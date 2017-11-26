@@ -39,7 +39,7 @@ void MainWindow::on_pushButton_CheckOut_clicked()
     int ItemId = id.toInt();
    // cout<<"correct ID is" << ItemId;
     QSqlQuery query;
-    query.prepare("UPDATE Item set Status = 0, Pawprint = :Pawprint where ItemId = :ItemId");
+    query.prepare("UPDATE Item set Status = 0, Pawprint = :Pawprint, BorrowTime = datetime('now', 'localtime'), ReturnTime = datetime('now','localtime','+' || BorrowLength || ' minutes') where ItemId = :ItemId");
     query.bindValue(":ItemId",ItemId);
     query.bindValue(":Pawprint",Pawprint);
     query.exec();
