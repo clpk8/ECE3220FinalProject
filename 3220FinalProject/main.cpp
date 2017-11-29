@@ -63,7 +63,7 @@ int DBManager::check(const QString &Pawprint, const QString &Password)
     }
 }
 
-int DBManager::matchID(int StudentID)
+int DBManager::check(int StudentID)
 {
     QSqlQuery query;
     query.prepare("SELECT StudentId FROM User WHERE StudentId = (:StudentId)");

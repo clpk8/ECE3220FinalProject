@@ -13,7 +13,7 @@ public:
     DBManager(const QString& path);
     void CreateUser(const QString& Pawprint,const QString& Name,const int StudentId, const int UserType,const QString& Password);
     int check(const QString& Pawprint, const QString& Password);
-    int matchID(int StudentID);
+    int check(int StudentID);
     int getUserType(QString StudentID);
     void InsertItem(const int ItemId, const QString& ItemName, const QString& Location, const int BorrowLength);
 
