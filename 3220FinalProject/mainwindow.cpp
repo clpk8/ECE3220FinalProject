@@ -62,7 +62,11 @@ void MainWindow::on_pushButton_Return_clicked()
 
     }
 
+<<<<<<< HEAD
+    //example code from Open CV
+=======
 
+>>>>>>> c3adb67e26f1e12c3b28c55658c1c8c202b033d8
     ImageScanner scanner;
     scanner.set_config(ZBAR_NONE, ZBAR_CFG_ENABLE, 1);
 
@@ -92,6 +96,10 @@ void MainWindow::on_pushButton_Return_clicked()
         int height = frame.rows;
         uchar *raw = (uchar *)grey.data;
         // wrap image data
+<<<<<<< HEAD
+        // example from ZBAR
+=======
+>>>>>>> c3adb67e26f1e12c3b28c55658c1c8c202b033d8
         Image image(width, height, "Y800", raw, width * height);
         // scan the image for barcodes
         int n = scanner.scan(image);

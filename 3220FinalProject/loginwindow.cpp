@@ -42,10 +42,14 @@ void LoginWindow::on_pushButton_Login_clicked()
 
         }
         else{
+            QProcess *process = new QProcess(this);
+
+            process->start("//Users//Ben//Dropbox//3220//build-SendMailBackEnd-Desktop_Qt_5_10_0_clang_64bit-Debug//SendMailBackEnd");
             AdminView av;
             av.data = data;
             av.setModal(true);
             av.exec();
+
         }
 
 

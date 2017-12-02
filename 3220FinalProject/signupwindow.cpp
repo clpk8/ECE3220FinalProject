@@ -25,14 +25,14 @@ void SignUpWindow::on_pushButton_SignUp_clicked()
       QString ID = ui->lineEdit_StudentID->text();
       StudentId = ID.toInt();
 
-      if(Password == passowrd1 && data->matchID(StudentId) == 1){
+      if(Password == passowrd1 && data->check(StudentId) == 1){
           data->CreateUser(Pawprint,Name,StudentId,1,Password);
           hide();
 
           ui->label_error->setText("Password not match");
       }
       else{
-          if(data->matchID(StudentId) != 1)
+          if(data->check(StudentId) != 1)
           {
               ui->label_error->setStyleSheet("color:red");
               ui->label_error->setText("Id not found");
