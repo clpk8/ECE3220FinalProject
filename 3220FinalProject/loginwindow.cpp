@@ -21,6 +21,7 @@ void LoginWindow::on_pushButton_Signup_clicked()
     s.data = data;
     s.setModal(true);
     s.exec();
+
 }
 
 void LoginWindow::on_pushButton_Login_clicked()

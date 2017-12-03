@@ -32,7 +32,8 @@ SOURCES += \
     loginwindow.cpp \
     signupwindow.cpp \
     adminview.cpp \
-    additemwindow.cpp
+    additemwindow.cpp \
+    error.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     loginwindow.h \
     signupwindow.h \
     adminview.h \
-    additemwindow.h
+    additemwindow.h \
+    error.h
 
 FORMS += \
         mainwindow.ui \

@@ -4,6 +4,7 @@
 #include "signupwindow.h"
 #include "database.h"
 
+
 DBManager::DBManager(const QString& path)
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
