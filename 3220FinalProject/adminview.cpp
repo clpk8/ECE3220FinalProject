@@ -1,6 +1,8 @@
 #include "adminview.h"
 #include "ui_adminview.h"
 #include "additemwindow.h"
+#include "errorhandle.h"
+#include "iostream"
 
 AdminView::AdminView(QWidget *parent) :
     QDialog(parent),
@@ -33,14 +35,76 @@ void AdminView::on_pushButton_LoadTable_clicked()
 
 void AdminView::on_pushButton_Delete_clicked()
 {
+
+    ui->label_Error->setStyleSheet("color:red");
+    int errorflag = 1, typeflag = 1;
     //Need to add error handling
     QString id = ui->lineEdit_DeleteId->text();
+
+    AdminError AE(data);
+
+    //--------
+
+
+
+    try{
+        //make sure it is all integer
+        if(AE.typeCheck(id) == 0){
+            throw 0;
+        }
+    }
+
+        catch(int &d){
+        typeflag = 0;
+
+        ui->label_Error->setText("Id is not Integer");
+           // qDebug() << "Id is not Integer" << endl;
+          //  throw "Id is not Integer";
+
+        }
+    try{
+        //make sure is not empty
+        if(AE.isEmpty(id) == 0){
+            throw 0;
+        }
+    }
+        catch(int &d){
+            errorflag = 0;
+            ui->label_Error->setText("Item ID is empty, not able to delete");
+           // qDebug() << "Item ID is empty, not able to delete" << endl;
+          //  throw "Item ID is empty, not able to delete";
+
+            }
+
     int ItemId = id.toInt();
+    if(typeflag == 1){
+        try{
+            if(AE.deleteMatch(ItemId) == 0){
+                throw 0;
+            }
+        }
+            catch(int &d){
+            errorflag = 0;
+            ui->label_Error->setText("Unable to delete");
+          //  qDebug() << "Unable to delete" << endl;
+             //   throw "Unable to delete";
+
+            }
+
+
     cout<<"correct ID is" << ItemId;
-    QSqlQuery query;
-    query.prepare("DELETE from Item Where ItemID = :ItemId");
-    query.bindValue(":ItemId",ItemId);
-    query.exec();
+    if(errorflag == 1){
+        ui->label_Error->setText("");
+        QSqlQuery query;
+        query.prepare("DELETE from Item Where ItemID = :ItemId");
+        query.bindValue(":ItemId",ItemId);
+        query.exec();
+
+    }
+
+
+
+}
 }
 
 void AdminView::on_pushButton_AddItem_clicked()

@@ -7,10 +7,12 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <zbar.h>
 #include <iostream>
+#include "errorhandle.h"
 
 using namespace cv;
 using namespace std;
 using namespace zbar;
+
 
 namespace Ui
 {

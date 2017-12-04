@@ -21,6 +21,7 @@ void LoginWindow::on_pushButton_Signup_clicked()
     s.data = data;
     s.setModal(true);
     s.exec();
+
 }
 
 void LoginWindow::on_pushButton_Login_clicked()
@@ -42,10 +43,14 @@ void LoginWindow::on_pushButton_Login_clicked()
 
         }
         else{
+            QProcess *process = new QProcess(this);
+
+            process->start("//Users//Ben//Dropbox//3220//SendMail//SendMailBackEnd");
             AdminView av;
             av.data = data;
             av.setModal(true);
             av.exec();
+
         }
 
 

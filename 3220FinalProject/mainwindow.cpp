@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -34,19 +33,62 @@ void MainWindow::on_pushButton_Load_clicked()
 
 void MainWindow::on_pushButton_CheckOut_clicked()
 {
-    //Need to add error handling
+    ErrorHandle E(data);
+    ui->label_Error->setStyleSheet("color:red");
+    int errorflag = 1, typeflag = 1;
+
+
     QString id = ui->lineEdit_ItemId->text();
-    int ItemId = id.toInt();
-   // <<"correct ID is" << ItemId;
-    QSqlQuery query;
-    query.prepare("UPDATE Item set Status = 0, Pawprint = :Pawprint, BorrowTime = datetime('now', 'localtime'), ReturnTime = datetime('now','localtime','+' || BorrowLength || ' minutes') where ItemId = :ItemId");
-    query.bindValue(":ItemId",ItemId);
-    query.bindValue(":Pawprint",Pawprint);
-    query.exec();
+    try{
+        if(E.typeCheck(id) == 0){
+            throw 0;
+        }
+    }
+    catch(int &d){
+        ui->label_Error->setText("Item Id is not valid");
+        typeflag = 0;
+    }
+    try{
+        if(E.isEmpty(id) == 0){
+            throw 0;
+        }
+    }
+    catch(int &d){
+        ui->label_Error->setText("Item ID is empty");
+        typeflag = 0;
+    }
+
+    if(typeflag == 1){
+
+        int ItemId = id.toInt();
+
+        try{
+            if(E.checkoutCheck(ItemId) == 0){
+                throw 0;
+            }
+        }
+        catch(int &d){
+            ui->label_Error->setText("You can't borrow this Item");
+            errorflag = 0;
+        }
+        if(errorflag == 1){
+             QSqlQuery query;
+             query.prepare("UPDATE Item set Status = 0, Pawprint = :Pawprint, BorrowTime = datetime('now', 'localtime'), ReturnTime = datetime('now','localtime','+' || BorrowLength || ' minutes') where ItemId = :ItemId");
+             query.bindValue(":ItemId",ItemId);
+             query.bindValue(":Pawprint",Pawprint);
+             query.exec();
+             ui->label_Error->setText(" ");
+        }
+
+    }
+
 }
 
 void MainWindow::on_pushButton_Return_clicked()
 {
+
+    ui->label_Error->setStyleSheet("color:red");
+    int errorflag = 1, typeflag = 1;
 
     //----------------------------------------------------------------------
     String id;
@@ -128,30 +170,66 @@ void MainWindow::on_pushButton_Return_clicked()
     }while(flag == 0);
     //----------------------------------------------------------------------
 
-    //Need to add error handling
-    int ItemId = stoi(id);
-   // <<"correct ID is" << ItemId;
-    //returning item
-    QSqlQuery query;
-    query.prepare("UPDATE Item set Status = 1, Pawprint = NULL where ItemId = :ItemId");
-    query.bindValue(":ItemId",ItemId);
-    query.exec();
+    QString temp = QString::fromStdString(id);
+
+    ErrorHandle E(data);
+    try{
+        if(E.typeCheck(temp) == 0){
+            throw 0;
+        }
+
+    }
+    catch(int &d){
+        typeflag = 0;
+        ui->label_Error->setText("Please use a Valid QR Code");
+    }
+    if(typeflag == 1){
+
+        int ItemId = stoi(id);
+
+        try{
+            if(E.checkIdExist(ItemId,Pawprint) == 0){
+                throw 0;
+            }
+        }
+        catch(int &d){
+            errorflag = 0;
+            ui->label_Error->setText("You can't return this Item");
+
+        }
+        if(errorflag == 1){
+            ui->label_Error->setText(" ");
+            //Need to add error handling
+           // <<"correct ID is" << ItemId;
+            //returning item
+            QSqlQuery query;
+            query.prepare("UPDATE Item set Status = 1, Pawprint = NULL where ItemId = :ItemId");
+            query.bindValue(":ItemId",ItemId);
+            query.exec();
+
+            //load again
+            QSqlQueryModel * modal = new QSqlQueryModel();
+            QSqlQueryModel * modal1 = new QSqlQueryModel();
+            QSqlQuery query1;
+            query1.prepare("SELECT ItemId, ItemName, Location from Item Where Status = 1");
+            query1.exec();
+            modal->setQuery(query1);
+            ui->AvaliableItem->setModel(modal);
+            QSqlQuery query2;
+            query2.prepare("SELECT ItemId, ItemName, Location from Item Where Status = 0 and Pawprint = :Pawprint");
+            query2.bindValue(":Pawprint",Pawprint);
+            query2.exec();
+            modal1->setQuery(query2);
+            ui->BorrowedItem->setModel(modal1);
+        }
+
+    }
+
+
+
     cvDestroyWindow("ScanWindow");
 
 
-    //load again
-    QSqlQueryModel * modal = new QSqlQueryModel();
-    QSqlQueryModel * modal1 = new QSqlQueryModel();
-    QSqlQuery query1;
-    query1.prepare("SELECT ItemId, ItemName, Location from Item Where Status = 1");
-    query1.exec();
-    modal->setQuery(query1);
-    ui->AvaliableItem->setModel(modal);
-    QSqlQuery query2;
-    query2.prepare("SELECT ItemId, ItemName, Location from Item Where Status = 0 and Pawprint = :Pawprint");
-    query2.bindValue(":Pawprint",Pawprint);
-    query2.exec();
-    modal1->setQuery(query2);
-    ui->BorrowedItem->setModel(modal1);
+
 
 }

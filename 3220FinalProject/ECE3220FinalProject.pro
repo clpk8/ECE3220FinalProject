@@ -33,7 +33,7 @@ SOURCES += \
     signupwindow.cpp \
     adminview.cpp \
     additemwindow.cpp \
-    sendmail.cpp
+    errorhandle.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +42,7 @@ HEADERS += \
     signupwindow.h \
     adminview.h \
     additemwindow.h \
-    sendmail.h
+    errorhandle.h
 
 FORMS += \
         mainwindow.ui \
