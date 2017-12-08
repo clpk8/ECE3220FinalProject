@@ -1,5 +1,8 @@
 # ECE3220 Final Project
 
+## Video URL
+https://www.youtube.com/watch?v=xSwDqnKpt9g
+
 ## Team Member
 * Chunbin Lin (clpk8)
 * Yiqing Wang (yw283)
